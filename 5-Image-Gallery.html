@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Image Gallery</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: black;
+            height: 98vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .img-gallery{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-img::-webkit-scrollbar{
+            display: none;
+        }
+        .gallery-img{
+            display: flex;
+            width: 900px;
+            height: 210px;
+            overflow-x: scroll;  
+        }
+        .gallery-img div{
+           display: grid;
+           grid-template-columns: auto auto auto;
+           padding: 10px;
+            width: 100%;
+            flex: none;
+            grid-gap: 20px;
+        }
+        
+        .gallery-img div img{
+            filter: grayscale(100%);
+            width: 100%;
+            transition:transform 0.9s ease-in-out;
+        }
+        .gallery-img div img:hover{
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        .forward-btn,.back-btn{
+            padding-inline: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="img-gallery">
+        <div class="forward-btn">
+            <img src="Images/icons8-back-arrow-64.png" alt="">
+        </div>
+        <div class="gallery-img">
+            <div>
+            <span><img src="Images/america statue-liberty-over-scene-.webp" alt=""></span>
+            <span><img src="Images/dubai burge khalifa.jpg" alt=""></span>
+            <span><img src="images/china log diwal.jpg" alt=""></span>
+            </div>
+            <div>
+                <span><img src="Images/river-image.webp" alt=""></span>
+                <span><img src="Images/blue water image.jpg" alt=""></span>
+                <span><img src="images/cinque-terre-s-colored-house.jpg" alt=""></span>
+                </div>
+            </div>
+       
+        <div class="back-btn">
+            <img src="Images/icons8-forward-button-64.png" alt="">
+        </div>
+    </div>
+    <script>
+        const scrollContainer=document.querySelector(".gallery-img")
+        const back=document.querySelector(".back-btn")
+        const next=document.querySelector(".forward-btn")
+        scrollContainer.addEventListener("wheel",(e)=>{
+            e.preventDefault()
+            scrollContainer.scrollLeft += e.deltY
+        })
+
+        next.addEventListener("click",()=>{
+            scrollContainer.scrollLeft -= 900
+        })
+        back.addEventListener("click",()=>{
+            scrollContainer.scrollLeft += 900
+        })
+
+
+
+
+
+    </script>
+</body>
+</html>

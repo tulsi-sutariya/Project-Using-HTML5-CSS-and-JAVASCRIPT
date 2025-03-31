@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28-To Do List App</title>
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+           
+        }
+        .container{
+            padding: 15px;
+            min-width: 600px;
+            max-width: 800px;
+            min-height: 300px;
+            background-color: white;
+            border-radius:5px ;
+        }
+        .container input{
+            width: 100%;
+            border: none;
+            padding: 10px;
+            font-size: 19px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            outline: none;
+            box-shadow: 0 0 2px gray;
+        }
+        .container .list{
+            display: flex;
+            justify-content: space-between;
+        }
+        .container .list button{
+            border: none;
+            outline: none;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+            background-color:brown;
+            color: white;
+            padding: 10px 20px;
+            font-size: 19px;
+        }
+        .container ul{
+            list-style: none;
+            margin-top: 15px;
+        }
+        .container ul li{
+            background-color:black;
+            color: white;
+            padding: 10px;
+            padding-right: 47px;
+            font-size: 19px;
+            margin-top: 10px;
+            border-radius: 10px;
+            position: relative;
+            word-wrap: normal;
+            line-height: 25px;
+            user-select: none;
+        }
+        .container ul li .cross{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+        .container ul li .tick{
+            position: absolute;
+            right: 40px;
+            top: 7px;
+        }
+        .done{
+            text-decoration: line-through;
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list">
+        <input type="text" autofocus placeholder="Write Something Here....">
+            <button type="submit">Add</button>
+        </div>
+        <ul>
+            <li style="display: none;"><img src="Images/tick-26.png" alt="" class="tick"><img src="Images/icons8-cross-30.png" class="cross"></li>
+        </ul>
+    </div>
+
+
+    <script>
+        const input_list=document.querySelector(".list input")
+        const btn=document.querySelector(".list button")
+        const li_list=document.querySelector("ul li")
+        const ul=document.querySelector("ul")
+        const cross=document.querySelector(".cross")
+     
+        const tick=document.querySelector(".tick")
+      
+
+        btn.addEventListener("click",()=>{
+            //console.log(input_list.value)
+            const item=input_list.value
+            input_list.value="" 
+            const liItem=document.createElement("li")
+            liItem.innerHTML=`${item} <img src="Images/tick-26.png" alt="" class="tick"> <img src="Images/icons8-cross-30.png" class="cross">`
+            ul.appendChild(liItem)
+        }) 
+        
+        ul.addEventListener("click",(e)=>{
+        if(e.target.classList.contains("cross")){
+          const targetLi=e.target.parentNode
+          targetLi.remove()
+        }
+        if(e.target.classList.contains("tick")){
+          const liSpan=e.target.parentNode
+          liSpan.style.textDecoration="line-through"
+        }
+      })
+          
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-OTP Verification Code</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            background-color: blue;
+            min-height: 100vh;
+            min-width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            height: 25%;
+            width: 25%;
+        }
+        header{
+            margin-bottom: 20px;
+        }
+        h2{
+            margin-bottom: 20px;
+        }
+        .container{
+            background-color: white;
+            text-align: center;
+            border-radius: 10px;
+            height: 300px;
+            width: 350px;
+            padding: 25px 45px;
+        }
+        .input-field input{
+            height: 45px;
+            width: 45px;
+            margin-left: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-radius: 4px;
+            outline: none;
+            border: 1px solid lightgray;
+            font-size: 19px;
+        }
+        .input-field input::-webkit-inner-spin-button,
+        .input-field input::-webkit-outer-spin-button{
+            display: none;
+        }
+        .input-field input:hover{
+            border:1px solid black;
+        }
+        button{
+            color: white;
+            background-color:cornflowerblue;
+            text-align: center;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            height: 40px;
+            width: 90%;
+            border-radius: 5px;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+        button.active{
+            background-color: blue;
+        }
+        button:hover{
+            background-color: mediumblue;
+        }
+        button:active{
+            background-color:dodgerblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><img src="Images/shield.png" alt=""></header>
+        <h2>Enter OTP Code</h2>
+        <form action="">
+            <div class="input-field">
+                <input type="number">
+                <input type="number"disabled>
+                <input type="number"disabled>
+                <input type="number"disabled>
+            </div>
+            <button class="btn">Verify OTP</button>
+        </form>
+    </div>
+
+    <script>
+        const btn=document.querySelector(".btn")
+        const inputs=document.querySelectorAll("input")
+
+        inputs.forEach((input,index1)=>{
+            input.addEventListener("keyup",(e)=>{
+                const currentInput = input;
+                nextInput = input.nextElementSibling;
+                previousInput=input.previousElementSibling;
+
+                //If the value has more than one value then clear it
+                if(currentInput.value.length > 1){
+                    currentInput.value= ""
+                    return 
+                }
+                //If the next input is disabled and the current value is not empty ,enable the next input and focus on it
+                if(nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== ""){
+                    nextInput.removeAttribute("disabled")
+                    nextInput.focus()
+                }
+
+            //If the backspace key is press
+            if(e.key == "Backspace"){
+            //Iterator over all input again
+            inputs.forEach((input,index2)=>{
+            //If the index1 of current input is less than or eual to the index2 of the current input in the outer loop
+            //and the previous element exist,set the disabled attribute on the input and focus on the previous element
+                if(index1 <= index2 && previousInput){
+                    input.setAttribute("disabled",true)
+                    currentInput.value=""
+                    previousInput.focus()
+                }
+
+            })}
+            //if the 4th input is not empty and has not disabled attribute then add active class if not then remove the active class
+            if(!inputs[3].disabled && !inputs[3].value !== ""){
+                btn.classList.add("active")
+                return
+            }
+            btn.classList.remove("active")
+        })
+        })
+
+        //focus the first input which index is 0 on window load
+        window.addEventListener("load",()=>inputs[0].focus())
+
+    </script>
+</body>
+</html>

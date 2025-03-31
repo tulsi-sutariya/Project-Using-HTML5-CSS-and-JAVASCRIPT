@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-Meme Generator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .container{
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+        }
+        .meme-btn{
+            border-right: 4px solid black;
+            border-left: 4px solid black;
+            border-bottom: none;
+            border-top: none;
+            outline: none;
+            margin: 15px 0;
+            padding: 10px;
+            font-size: 22px;
+            transition: all 0.2s linear;
+            cursor: pointer;
+        }
+        .meme-btn:hover{
+            border-right: 8px solid black;
+            border-left: 8px solid black;
+            letter-spacing: 2px;
+            color:blue;
+        }
+        h2{
+            padding-bottom: 15px;
+        }
+        .meme-author{
+            margin: 8px 0;
+        }
+        .meme-img{
+            height: 430px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button type="button" class="meme-btn">Generate Meme</button>
+        <h2 class="title">Loading...</h2>
+        <img src="" alt="" class="meme-img">
+        <div class="meme-author"></div> 
+    </div>
+
+    <script>
+        const generateBtn=document.querySelector(".meme-btn")
+        const memeImg=document.querySelector(".meme-img")
+        const memeTitle=document.querySelector(".title")
+        const memeAuthor=document.querySelector(".meme-author")
+
+        const updateDetails=(url,title,author)=>{
+            memeImg.setAttribute("src",url)
+            memeTitle.innerHTML=title
+            memeAuthor.innerHTML=`Meme by ${author}`
+         }
+
+        const generateMeme=()=>{
+            fetch("https://meme-api.com/gimme/wholesomememes")
+            .then( (response) =>response.json())
+            .then((data) =>{
+                updateDetails(data.url,data.title,data.author)
+            })
+        }
+        generateBtn.addEventListener("click",generateMeme)
+    </script>
+</body>
+</html>

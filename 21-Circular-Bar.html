@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21-Circular Bar</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:whitesmoke;
+        }
+        .container{
+            width: 160px;
+            height: 160px;
+            background-color: white;
+            position: relative;
+        }
+        .outer{
+            height: 160px;
+            width: 160px;
+            border-radius: 50%;
+            box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                       -6px -6px 10px -1px rgba(255,255,255,0.7);
+            padding: 20px;
+        }
+        .inner{
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+           
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                        inset -4px -4px 6px -1px rgba(255,255,255,1),
+                        -0.5px -0.5px 0  rgba(255,255,255,1),
+                        0.5px 0.5px 0 rgba(0,0,0,0.15),
+                        0 12px 10px -10px rgba(0,0,0,0.05);
+        }
+        .number{
+            font-size: 26px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="outer">
+            <div class="middle">
+            <div class="inner">
+                <div class="number">
+                    65%
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-Page  Scroll Progress indicator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color:greenyellow;
+        }
+        .scrollbar{
+            background-color: blue;
+            width: 100%;
+            height: 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 65px;
+        }
+        .cards{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+            width: 150px;
+            font-size:40px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="scrollbar">
+    </div>
+    <div class="container">
+       <div class="cards">1</div>
+       <div class="cards">2</div>
+       <div class="cards">3</div>
+       <div class="cards">4</div>
+       <div class="cards">5</div>
+       <div class="cards">6</div>
+       <div class="cards">7</div>
+       <div class="cards">8</div>
+       <div class="cards">9</div>
+       <div class="cards">10</div>
+       <div class="cards">11</div>
+       <div class="cards">12</div>
+       <div class="cards">13</div>
+       <div class="cards">14</div>
+       <div class="cards">15</div>
+       <div class="cards">16</div>
+       <div class="cards">17</div>
+       <div class="cards">18</div>
+       <div class="cards">19</div>
+       <div class="cards">20</div>
+    
+    </div>
+    <script>
+        //scrollHeight:total height of scroll page from top to bottom
+        //scrollY:scrolling height
+        //innerHeight:particular height that display in the screen
+        const scrollBar=document.querySelector(".scrollbar")
+
+        window.addEventListener("scroll",()=>{
+            console.log("scrollY",window.scrollY)
+            console.log("scrollHeight",document.body.scrollHeight)
+            console.log("innerHeight",window.innerHeight)
+           let percentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+           scrollBar.style.width = percentage + '%'
+            }
+        )
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31-Whether App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:sans-serif ;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg ,deepskyblue,cornflowerblue);
+        }
+        
+        main .left,main .right{
+            width: 1000px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main .left form input{
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2),
+                        0 6px 20px rgba(0,0,0,0.1);
+            font-size: 22px;
+        }
+        main .right{
+            gap: 30px;
+        }
+        main .right .info{
+           display: flex;
+           gap: 25px;
+           color: white;
+          
+           padding-top:20px ;
+           margin-left: 30px;
+           flex-direction: column;
+        }
+        main .right .info h2{
+            font-size: 55px;
+        }
+        main .right .info p{
+            font-size: 25px;
+            letter-spacing: 1px;
+           margin-left: 1px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="left">
+            <form>
+                <input type="text" name="" id="search" placeholder="Search by city name...">
+            </form>
+        </div>
+        <div class="right">
+           
+        </div>
+    </main>
+
+    <script>
+        const key='d469d37fedd51bbcc61d0e643c62d58e'
+        const form = document.querySelector("form")
+        const search = document.getElementById("search").value
+        const right = document.querySelector(".right")
+      
+      
+        const showWhetherData = (data)=>{
+            right.innerHTML = `<div class="right">
+            <div class="icon">
+               <img src="${data.current.condition.icon}">
+            </div>
+            <div class="info">
+                <h2>${data.current.temp_c} ℃</h2>
+                <p>${data.current.condition.text}</p>
+            </div>
+        </div>`
+        }    //cdn.weatherapi.com/weather/64x64/night/353.png
+
+        form.addEventListener("submit",async(e)=>{
+           e.preventDefault()
+           const url = `http://api.weatherapi.com/v1/current.json?key=c8895d2d8e0d4e6b9e1145718242408&q=gujrat`
+           
+            let getData = await fetch(url)
+            getData = await getData.json()
+            console.log(getData)
+            showWhetherData(getData)
+        })
+    </script>
+</body>
+</html>

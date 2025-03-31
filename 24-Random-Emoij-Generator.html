@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-Random Emoji Generator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        .container{
+            width: 350px;
+            background-color:blanchedalmond;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.246);
+        }
+        .heading h2{
+            font-size: 36px;
+        }
+        .btn{
+            margin: 10px;
+        }
+        .btn button{
+            padding: 10px;
+            font-size: 24px;
+            width: 120px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.446);
+            border: none;
+            outline: none;
+            background-color:white;
+            transform: all 0.3s ease-in;
+            border-radius: 5px;
+        }
+        .btn button:hover{
+            background-color:black;
+            color: white;
+        }
+        .name h5{
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h2>Random Emoji</h2>
+        </div>
+        <div class="btn">
+            <button type="submit" id="btn">Click Me</button>
+        </div>
+        <div class="name">
+            <h5>Emoji Name</h5>
+        </div>
+    </div>
+
+    <script>
+        const btn=document.querySelector("#btn")
+        const name=document.querySelector(".name")
+        const url="https://emoji-api.com/emojis?access_key=6c71cb4ff74bfdac35915acfade8b6708ac12e1d"
+
+        function getRandom(n){
+            return Math.floor(Math.random() * n)
+        }
+
+        btn.addEventListener("click",async ()=>{
+            let getData= await fetch(url)
+            getData=await getData.json()
+            const randoN=getRandom(getData.length)
+            const char=getData[randoN].character
+            const unicode=getData[randoN].unicodeName
+            btn.innerHTML=char
+            name.innerHTML=unicode
+        })
+    </script>
+</body>
+</html>

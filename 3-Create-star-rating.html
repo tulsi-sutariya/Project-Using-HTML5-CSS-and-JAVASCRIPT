@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Crete Star Rating</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:lightgreen;
+        }
+        .rating-box{
+            background-color: white;
+            width: 30%;
+            
+            height: 20%;
+            border-radius: 25px;
+            padding: 20px 30px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.17);
+        }
+        header{
+            color: gray;
+            font-size: 22px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .star{
+            padding-top: 13px;
+            padding-left:20px;
+           
+        }
+        .star img{
+            height: 18%;
+            width: 14%;
+            margin-right: 12px;
+            filter: contrast(1%);
+        }
+        .i1{
+            filter: contrast(100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="rating-box">
+        <header>How was your experience?</header>
+        <div class="star">
+            <img src="Images/bx-star.svg" alt="" class="i1">
+            <img src="Images/bx-star.svg" alt="" class="i1">
+            <img src="Images/bx-star.svg" alt="" class="i1">
+            <img src="Images/bx-star.svg" alt="" class="i1">
+            <img src="Images/bx-star.svg" alt="" class="i1">
+        </div>
+    </div>
+    <script>
+        const stars=document.querySelectorAll(".star img")
+        
+        stars.forEach( (star,index1)=>{
+            
+            star.addEventListener("click",()=>{
+                    star.style.filter="contrast(100%)"
+                    count ++
+                    console.log(count)
+            })
+        
+       
+
+        })
+    </script>
+</body>
+</html>

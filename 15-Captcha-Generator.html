@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-Captcha Generator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:sans-serif;
+        }
+        body{
+            background-color: lightgray;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            text-align: center;
+            width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 0 5px 0 rgba(0,0,0,0.5);
+        }
+        .header{
+            background-color: crimson;
+            color: white;
+            padding: 10px 10px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .captcha{
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .input{
+            margin-bottom: 10px;
+        }
+        .input input{
+            font-size: 17px;
+            padding:5px 10px;
+            width: 90%;
+        }
+        button{
+            margin-bottom: 15px;
+            margin:10px;
+            background-color: crimson;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            cursor:pointer;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Captcha Generator</h1>
+        </div>
+        <div class="captcha">
+            cY6690 
+        </div>
+        <div class="input">
+            <input type="text" name=""  class="enter-captcha" placeholder="Enter Captcha Value">
+        </div>
+        <div class="btn">
+            <button type="submit" class="sub">Submit</button>
+            <button type="reset" class="ref">Refresh</button>
+        </div>
+    </div>
+
+   <script>
+        const input=document.querySelector(".enter-captcha")
+        const submit=document.querySelector(".sub")
+        const refresh=document.querySelector(".ref")
+        const captcha=document.querySelector(".captcha")
+        const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+        submit.addEventListener("click",()=>{
+            const userValue=input.value
+            const captchaValue=captcha.textContent.trim() //remove additional space
+            if(userValue == captchaValue){
+                alert("Captcha is Matched")
+            }
+            else{
+                alert("Captcha is not Matched")
+            }
+        })
+
+        function generateCptcha(){
+            let cap_gene=""
+            for(let i=0;i<6;i++){
+                cap_gene += chars[Math.floor(Math.random() * chars.length)]
+            }
+            return cap_gene
+        }
+
+        refresh.addEventListener("click",()=>{
+            captcha.textContent = generateCptcha()
+            
+        })
+   </script>
+</body>
+</html>

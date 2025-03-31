@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30- Quiz Website</title>
+      <link rel="stylesheet" href="30-Quiz-Website.css">
+</head>
+<body>
+    <div class="start-btn">
+        <button>Start Quiz</button>
+    </div>
+    <section class="second">
+        <header>
+            <h2>Rulesof this Quiz</h2>
+        </header>
+        <div class="rules">
+            <p>1.You will have only <span>15 seconds</span> per each question.</p>
+            <p>2.Once you select your answer,it can`t be undone.</p>
+            <p>3.You can`t select any option once time goes off.</p>
+            <p>4.You can`t exit from the Quiz while you`re  playing.</p>
+            <p>5.You`ll get point on the basis of your correct answer.</p>
+        </div>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
+        </div>
+    </section>
+
+        <section class="third">
+         
+            <header>
+                <h2>Quiz Application</h2>
+                <div class="times">
+                    <div class="time_text">Time Left</div>
+                    <div class="time_sec">15</div>
+                </div>
+                <div class="time_line"></div>
+            </header>
+            <main>
+                <div class="question">
+                    <!--<h1>1.What does HTML stands for?</h1>-->
+                    <div class="list"><span></span></div>
+                </div>
+                <div class="option_list">
+                   
+                </div>
+            </main>
+            
+           <footer>
+                <div class="left">
+                 <!--<p> <span>1 </span> of <span>5 </span> Questions</p>-->
+                </div>
+                <div class="buttons">
+                    <button class="quit">Exit Quiz</button>
+                    <button class="next">Next</button>
+
+                </div>
+            </footer>
+          
+        </section>
+
+
+        <section class="win_box">
+            <div class="left"><img src="Images/icons8-crown-50.png" alt=""></div>
+            <div class="right">
+                <p>You`ve completed the Quiz!</p>
+               <!-- <p>and good ,You got <span>2</span>out of<span>5</span></p>-->
+            </div>
+            <div class="buttons">
+                <button class="restart">Replay Quiz</button>
+                <button class="quit">Quit Quiz</button>
+            </div>
+        </section>
+
+    <script src="30-Quiz-Website.js" defer></script>
+</body>
+</html>

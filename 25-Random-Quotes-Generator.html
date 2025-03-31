@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-Random Quotes Generator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            text-align: center;
+           
+        }
+        .heading{
+           font-size: 50px;
+        }
+        .container p{
+            padding-top: 10px;
+        }
+        .container .btn{
+            width: 200px;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 20px;
+            transform: all 0.3s;
+        }
+        .container .btn:hover{
+            background-color:crimson;
+            color: white;
+        }
+        .container .quote-container{
+            margin-top: 20px;
+            border: 2px solid black;
+            background-color: blanchedalmond;
+            padding: 10px;
+        }
+        .container .quote-container .quote{
+            color: black;
+            font-weight: bolder;
+        }
+        .container .quote-container .author{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">
+             Quote of The Day
+        </h1>
+        <p>pleae click on the button to generate quotes</p>
+        <button class="btn">Generate Quote</button>
+        <div class="quote-container">
+            <p class="quote">"Your generated Quote"</p>
+            <p class="author">-author name</p>
+        </div>
+    </div>
+
+    <script>
+        const btn=document.querySelector(".btn")
+        const quote=document.querySelector(".quote")
+        const authors=document.querySelector(".author")
+
+        function getRandom(n){
+            return Math.floor(Math.random() * n)
+        }
+      
+    const quotes = [
+    {
+        quote: "Do not pity the dead, Harry. Pity the living, and, above all those who live without love.",
+        author: "Albus Dumbledore"
+    },
+    {
+        quote: "It is impossible to manufacture or imitate love",
+        author: "Horace Slughorn"
+    },
+    {
+        quote: "Being different isn't a bad thing. I mean that you are brave enough to be yourself.",
+        author: "Luna Lovegood"
+    },
+    {
+        quote: "If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals.",
+        author: "Sirius Black"
+    },
+    {
+        quote: "Never trust anything that can think for itself if you can’t see where it keeps its brain.",
+        author: "Arthur Weasley"
+    },
+    {
+        quote: "Every human life is worth the same, and worth saving.",
+        author: "Kingsley Shacklebolt"
+    },
+    {
+        quote: "Have a biscuit, Potter.",
+        author: "Minerva McGonagall"
+    },
+    {
+        quote: "Happiness can be found even in the darkest of times if one only remembers to turn on the light.",
+        author: "Albus Dumbledore"
+    },
+    {
+        quote: "Socks are Dobby’s favorite, favorite clothes, sir!",
+        author: "Dobby"
+    }
+]
+
+             btn.addEventListener("click", async() =>{  
+             let getData= await getRandom(quotes.length)
+             quote.innerHTML= '"' + quotes[getData].quote+  '" '
+             authors.innerHTML= '-' + quotes[getData].author
+
+        })
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Create a Download button</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+           
+            height: 100vh;
+            width: 100vw;
+        }
+        .download-btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color:cornflowerblue;
+            padding: 10px 25px;
+            transition: all 0.2s ease;
+            transform: translate(-50%,-50%);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .download-btn:hover{
+            background-color:deepskyblue;
+        }
+        img{
+            width: 80%;
+            font-size: 20px;
+        }
+        .text{
+            color: white;
+            padding-left: 5px;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        .timer{
+            color: black;
+            box-shadow:none;
+            font-size: 1.6rem;
+            pointer-events: none;
+            background-color:white;
+            transition: none;
+        }
+        b{  
+            padding-inline: 5px;
+            color:deepskyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="download-btn" data-timer="5">
+        <span class="img"><img src="Images/icons8-downloading-updates-48.png" alt=""></span>
+        <span class="text">Download Files</span>
+    </button>
+
+
+    <script>
+        const downloadBtn=document.querySelector(".download-btn")
+        const filelink="https://drive.google.com/file/d/1fQJOlkJF1tXRdO4fxlajlMdJGWstatUA/preview"
+
+        const initTimer= () =>{
+        //getting data time attribute from HTML
+        let timer=downloadBtn.dataset.timer
+        downloadBtn.classList.add("timer")
+        downloadBtn.innerHTML=`Your file will download in <b>${timer}</b> second`
+            const initCount=setInterval(() => {
+            if(timer > 0){
+                timer--;
+                return (downloadBtn.innerHTML=`Your file will download in <b>${timer}</b> second`)
+            }
+            clearInterval(initCount);
+            location.href=filelink;
+            downloadBtn.textContent= "Your file is downloading..."
+
+        }, 1000); //1000 millisecond = 1s
+        }
+        
+        downloadBtn.addEventListener("click",initTimer)
+    </script>
+</body>
+</html>

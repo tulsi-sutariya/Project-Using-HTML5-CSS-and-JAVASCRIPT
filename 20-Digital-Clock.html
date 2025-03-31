@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20-Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(40deg,purple,darkblue);
+            height: 100vh;
+            width: 100vw;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container{
+            background:rgba(235, 0, 255, 0.11);
+            width: 550px;
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .container::before{
+            content: '';
+            top: 38%;
+            left: 29%;
+            transform: translate(-50%,-50%);
+            z-index: -1;
+            position: absolute;
+            background-color: deeppink;
+            border-radius: 5px;
+            width: 120px;
+            height: 120px;
+        }
+        .container::after{
+            content: '';
+            top: 40.5%;
+            right: 19.6%;
+            transform: translate(-50%,50%);
+            position: absolute;
+            background-color:cornflowerblue;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            z-index: -1;
+        }
+        .clock{
+            font-size: 80px;
+            color: white;
+        }
+        #hrs::after{
+            content: "HOURS";
+            position: absolute;
+            bottom: 40%;
+            left: 37%;
+            font-size: 15px;
+        }
+        #sec::after{
+            content: "SECOND";
+            position: absolute;
+            font-size: 15px;
+            bottom: 40%;
+            left: 59%;
+        }
+        #min::after{
+            font-size: 15px;
+            position: absolute;
+            content: "MINUTE";
+            bottom: 40%;
+            right: 47.7%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <span id="hrs">00</span>
+            <span>:</span>
+            <span id="min">00</span>
+            <span>:</span>
+            <span id="sec">00</span>
+        </div>
+    </div>
+
+    <script>
+        const hours=document.getElementById("hrs")
+        const minutes=document.getElementById("min")
+        const seconds=document.getElementById("sec")
+
+         setInterval(() => {
+           const currentDate=new Date();
+            hours.innerHTML=currentDate.getHours()
+            minutes.innerHTML=currentDate.getMinutes()
+            seconds.innerHTML=currentDate.getSeconds()
+
+        },1000);
+    </script>
+</body>
+</html>

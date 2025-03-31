@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-Mini Calender</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            background-color: black;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            height: 200px;
+            width: 260px;
+            border-radius: 10px;
+        }
+        .left,.right{
+            width: 50%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+           
+        }
+        .left{
+            width: 56%;
+            height: 200px;
+            padding: 35px 32px;
+        }
+        .right{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            height: 200px;
+            width: 44%;
+            text-align: center;
+            padding: 97px 10px;
+            background-color:fuchsia;
+            color: white;
+        }
+        .date{
+            font-size: 80px;
+            
+        }
+        .year{
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="left">
+           <h3 class="date"></h3>
+           <h3 class="day"></h3>
+        </div>
+        <div class="right">
+           <h3 class="month"></h3>
+           <h3 class="year"></h3>
+    </div>
+    </div>
+
+    <script>
+        const date=document.querySelector(".date")
+        const day=document.querySelector(".day")
+        const month=document.querySelector(".month")
+        const year=document.querySelector(".year")
+
+        const  today=new Date()
+       
+        const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+        const months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+        date.innerHTML=(today.getDate()<10 ? "0" : "")+ today.getDate()
+        day.innerHTML=days[today.getDay()]
+        month.innerHTML=months[today.getMonth()]
+        year.innerHTML=today.getFullYear()
+       
+    </script>
+</body>
+</html>

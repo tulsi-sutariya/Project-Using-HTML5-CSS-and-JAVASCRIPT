@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32-Form Validation</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            background-color: darkblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main{
+            width: 495px;
+            height: 490x;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.39),
+            0 6px 10px rgba(0,0,0,0.28);
+        }
+         .tele{
+            background-color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            position: absolute;
+            top: 5.5%;
+            left: 48%;
+            z-index: 100;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2),
+                        0 6px 20px rgba(0,0,0,0.31);
+
+        }
+         img{
+            width: 100%;
+        }
+        .main h2{
+           margin-top: 20px;
+            padding-top: 20px;
+            font-size: 35px;
+            text-align: center;
+        }
+        .main form{
+            position: relative;
+            padding-inline: 20px;
+        }
+        .main form .input-bx{
+            display: flex;
+            position: relative;
+           
+           padding-top: 27px;
+        }
+        .main form .input-bx label{
+            font-size: 18px;
+            flex-basis: 29%;
+          
+        }
+        .main form .input-bx input,
+        .main form .input-bx textarea{
+            width: 80%;
+            flex-basis: 71%;
+            border: none;
+            border-bottom: 1px solid gray;
+            padding: 5px 30px 5px 10px;
+            transition: all 0.3s ease;
+            outline: none;
+            font-size: 18px;
+            margin-left: 5px;
+            
+        }
+        
+        .main form .input-bx textarea{
+            resize: none;
+        }
+        .main form .btn{
+            text-align: center;
+            margin-top: 25px;
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+        .main form .btn button{
+            border: none;
+            cursor: pointer;
+            outline: none;
+            background-color: darkblue;
+            padding: 10px 25px;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: all 0.4s ease;
+        }
+        .main form .btn button:hover{
+            background-color:indigo
+        }
+        .main form span{
+            color: red;
+            position: absolute;
+            right: 5px;
+            bottom: 6px;
+            text-align: right;
+        }
+        p{
+            color: red;
+            position: absolute;
+            left: 20px;
+            bottom:-10px;
+            text-align: right;
+        }
+        .tick{
+            width: 5%;
+            position: absolute;
+            right: 5px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="tele">
+       <img src="Images/bxl-telegram.svg" alt="">
+    </div>
+    <div class="main">
+       
+     
+            <h2>Contact Form</h2>
+            <form action="">
+                <div class="input-bx">
+                    <label for="name">Full Name</label>
+                    :<input type="text" name="" id="contact-name" onkeyup="validName()">
+                    <span class="name-error"></span>
+                </div>
+                <div class="input-bx">
+                    <label for="phone_no">Phone No.</label>
+                    :<input  name="" id="contact-phone" onkeyup="validNumber()">
+                    <span class="phone-error"></span>
+                </div>
+              
+                <div class="input-bx">
+                    <label for="email">Email id</label>
+                    :<input type="email" name="" id="contact-email" onkeyup="validEmail()">
+                    <span class="email-error"></span>
+                </div>
+             
+                <div class="input-bx  mess" >
+                    <label for="message">Your Message</label>
+                    :<textarea name="" id="contact-msg" rows="5" onkeyup="validMessage()"></textarea>
+                    <span class="msg-error"></span>
+                </div>
+              
+                <div class="btn">
+                    <button type="submit" onclick="return validForm()">Submit</button>
+                </div>
+               <p class="submit-error"></p>
+            </form>
+    </div>
+
+    <script>
+        const name_error = document.querySelector(".name-error")
+        const phone_error = document.querySelector(".phone-error")
+        const email_error = document.querySelector(".email-error")
+        const mgs_error = document.querySelector(".msg-error")
+        const submit_error = document.querySelector(".submit-error")
+      
+
+        function validName(){
+            var name= document.querySelector("#contact-name").value
+            if(name.length == 0){
+                name_error.innerHTML = 'Name is required'
+                return false
+            }
+              if(!name.match(/^[A-Za-z]*\s{1}[A-Za-z]*$/)){
+                name_error.innerHTML = 'Write full name'
+                return true
+            }
+           name_error.innerHTML = 'valid'
+           setTimeout(()=>{
+                name_error.innerHTML = ''
+               },4000)
+           return true
+
+           
+        }
+
+        function validNumber(){
+            var phone = document.querySelector("#contact-phone").value
+            if(isNaN(phone)){
+            phone_error.innerHTML = 'Only digits please'
+            return false
+            }
+            if(phone.length == 0){
+                phone_error.innerHTML = 'Phone no. is required'
+                return false
+            }
+            if(phone.length != 10){
+                phone_error.innerHTML = 'Phone no. should be 10 digits'
+                return false
+            }
+          if(phone.length == 10){
+            phone_error.innerHTML = 'valid'
+            setTimeout(()=>{
+                 phone_error.innerHTML = ''
+               },2000)
+            return  true
+          }
+         
+        }
+
+        function validEmail(){
+            var email1 = document.querySelector("#contact-email").value
+         
+            if(email1.length == 0){
+                email_error.innerHTML = 'email is required'
+                return false
+            }
+            const valid = /^[^]+@[^]+\.[a-z]{2,3}$/
+            if(!valid.test(String(email1).toLowerCase)){
+                email_error.innerHTML = 'Invalid email'
+                
+                setTimeout(()=>{
+               email_error.innerHTML = ''
+               },4000)
+                return false
+            }
+           
+            return true
+        }
+        function validMessage(){
+            var msg = document.querySelector("#contact-msg").value
+            var require = 30
+            var left = require - msg.length
+            if(left > 0 ){
+            mgs_error.innerHTML = left + ' more character required'
+            return false
+            }
+
+        }
+
+        function validForm(){
+            if(!validName() || !validEmail() || !validNumber() || !validMessage()){
+                submit_error.style.display='block'
+                submit_error.innerHTML = 'Please fix error to submit'
+                
+               setTimeout(()=>{
+                 submit_error.style.display='none'
+               },3000)
+               return false
+            }
+        }
+    </script>
+</body>
+</html>

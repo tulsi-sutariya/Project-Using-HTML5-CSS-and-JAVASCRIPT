@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19-Dictionary App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            height: 100vh;
+            background-color:black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            background-color: white;
+            width: 430px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        header{
+            color:blue;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+        .input-field{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .input-field input{
+            margin-bottom: 15px;
+            width: 100%;
+            outline: none;
+            padding: 10px;
+            border: 1px solid gray;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        input:focus{
+            border-color: blue;
+        }
+        .input-field button{
+          background-color:blue;
+          border: none;
+          outline: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          color: white;
+          margin-bottom: 15px;
+          font-size: 18px;
+          cursor: pointer;
+          transition: all 0.3s linear;
+        }
+        .input-field button:hover{
+            background-color:dodgerblue;
+        }
+        .output-field{
+            margin-bottom: 15px;
+        }
+        p{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><h2>Dictionary App</h2></header>
+        <div class="input-field">
+            <input type="text" id="input" placeholder="Enter a word to get meaning">
+            <button id="search">Search</button>
+        </div>
+        <div class="output-field">
+            <p>Meaning will be display here...</p>
+        </div>
+    </div>
+
+    <script>
+        const button=document.querySelector("button")
+        const input=document.getElementById("input")
+        const output=document.querySelector("p")
+
+        button.addEventListener("click",async()=>{
+            const userInput=input.value
+            if(userInput == ""){
+                alert("Please enter a word")
+            }
+            else{
+                const url=`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`
+                let meaning=await fetch(url)
+                meaning=await meaning.json()
+                output.innerHTML=meaning[0]['meanings'][0]["definitions"][0]["definition"]
+            }
+        })
+    </script>
+</body>
+</html>

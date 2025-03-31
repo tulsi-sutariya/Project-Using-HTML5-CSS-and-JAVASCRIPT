@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-Countdown to new year</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+        }
+        header{
+            background-color:orangered;
+            color: white;
+            padding:10px;
+            font-size: 22px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .nextYear{
+            text-align: center;
+            color: black;
+            margin-block: 15px;
+            font-size: 43px;
+            font-weight: bold;
+        }
+       .countdown{
+        display: flex;
+        justify-content: space-around;
+       padding: 10px;
+        color: white;
+        background-color: orangered;
+       border-bottom-left-radius: 10px;
+       border-bottom-right-radius: 10px;
+       }
+       .days{
+        padding-right: 5px;
+        text-align: center;
+       }
+       .houres{
+        padding-right: 5px;
+        text-align: center;
+       }
+       .minutes{
+        padding-right: 5px;
+        text-align: center;
+       }
+       .seconds{
+        padding-right: 5px;
+        text-align: center;
+       }
+       </style>
+</head>
+<body>
+    <div class="container">
+        <header> <h1>New Year Counter</h1></header>
+        <div class="nextYear"> <h1 id="nextYear">2026</h1></div>
+        <div class="countdown">
+            <div class="days">
+                <h1 id="days">00</h1>
+                <h3>Days</h3>
+            </div>
+            <div class="houres">
+                <h1 id="houres">00</h1>
+                <h3>Houres</h3>
+            </div>
+            <div class="minutes">
+                <h1 id="minutes">00</h1>
+                <h3>Minutes</h3>
+            </div>
+            <div class="seconds">
+                <h1 id="seconds">00</h1>
+                <h3>Seconds</h3>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const days = document.querySelector("#days")
+        const houres=document.querySelector("#houres")
+        const minutes=document.querySelector("#minutes")
+        const seconds=document.querySelector("#seconds")
+
+        const currentYear=new Date().getFullYear()
+        const nextYear=currentYear + 1
+
+        console.log("CurrentYear:",currentYear)
+        console.log("nextYear",nextYear)
+
+        setInterval( () => {
+            const currentDate = new Date()
+            const newYearDate = new Date(`January 01 ${nextYear} 00:00:00`)
+            const totalSeconds=(newYearDate - currentDate) / 1000
+
+            const dayLeft=Math.floor(totalSeconds / 3600 / 24)
+            const houreLeft=Math.floor(totalSeconds /3600) % 24
+            const minutesLeft=Math.floor(totalSeconds / 60) % 60
+            const secondLeft=Math.floor(totalSeconds) % 60
+
+            days.innerHTML = dayLeft;
+            houres.innerHTML = houreLeft
+            minutes.innerHTML=minutesLeft
+            seconds.innerHTML=secondLeft
+        },1000)
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29-Notes App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            min-height: 94.7vh;
+            width: 100vw;
+            background: linear-gradient(135deg,hotpink,skyblue);
+            color:white;
+        
+        }
+        .container{
+            margin-top: 30px;
+            margin-left: 60px;
+           
+        }
+        .container h2{
+            display: flex;
+            font-size: 50px;
+            gap: 10px;
+        }
+        .container h2 img{
+            width: 3.5%;
+        }
+        .container .search-btn{
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            position: relative;
+            width: 100%;
+        }
+        .container .search-btn input{
+            width: 19%;
+          
+            outline: none;
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 18px;
+            transition: all 0.4s ease;
+        }
+       
+        .container .search-btn input:focus{
+            width: 28%;
+            background-image: url(Images/bx-search.svg);
+            background-position:right;
+            background-repeat: no-repeat;
+        }
+      
+        .container .search-btn img{
+            transition: all 0.4s ease;
+            position: absolute;
+           
+            left: 205px;
+            top: 5px;
+        }
+        .container .btn{
+            border: none;
+            margin-top:16px;
+            padding: 10px 30px;
+            outline: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+            background:linear-gradient(blue 100%,deeppink 0%);
+
+        }
+        .container .btn:hover{
+            background:linear-gradient(to right,blue 50%,magenta 50%);
+        }
+        .notes-container{
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+           
+        }
+        .notes{
+            width: 275px;
+            min-height: 300px;
+            background-color: white;
+            margin-top: 20px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.45);
+            border-radius: 5px;
+           position: relative;
+        }
+        .notes .option{
+            background-color: black;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 5px;
+            position: relative;
+            height: 40px;
+          
+        }
+        .notes .option img{
+          padding-right: 7px;
+          
+        }
+        .notes textarea{
+           width: 100%;
+           height: 77.5%;
+           border: none;
+           outline: none;
+           resize: none;
+            padding: 10px;
+            font-size: 19px;
+           
+        }
+      
+        .date{
+            position: absolute;
+            bottom: 3px;
+            right: 0px;
+            width: 100%;
+            padding-top: 2px;
+            padding-right: 5px;
+            text-align: right;
+            color: gray;
+            border-top: 1px solid gray;
+            border-width: 100%;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><img src="Images/notes.1.icon.jpg" alt="">Notes</h2>
+        <div class="search-btn">
+           <input type="text" placeholder="Search"> <img src="Images/bx-search.svg" alt="">
+        </div>
+        <button class="btn">Create Notes</button>
+       <div class="notes-container">
+       <!-- <div class="notes">
+            <div class="option">
+              <img src="Images/icons8-save-24.png" alt="" >
+                <img src="Images/icons8-edit-30.png" alt="">
+                <img src="Images/icons8-delete-24.png" alt="">
+            </div>
+            <textarea name="" id="input-bx"></textarea>
+            <p class="date"></p>-->
+        </div>
+        
+    </div>
+    </div>
+
+    <script>
+        const search=document.querySelector(".search-btn img")
+        const searchInput=document.querySelector(".search-btn input")
+        const btn=document.querySelector(".btn")
+        const notes_container=document.querySelector(".notes-container") 
+
+        searchInput.addEventListener("mousemove",()=>{
+            search.style.visibility="hidden"
+        })
+        searchInput.addEventListener("mouseout",()=>{
+            search.style.visibility="visible"
+        })
+
+      
+        btn.addEventListener("click",()=>{
+           const note=document.createElement("div")
+            note.classList.add("notes")
+            note.innerHTML=` <div class="option">
+              <img src="Images/icons8-save-24.png" alt="" class="save">
+                <img src="Images/icons8-edit-30.png" alt="" class="edit">
+                <img src="Images/icons8-delete-24.png" alt="" class="delete">
+            </div>
+            <textarea id="input-bx"></textarea>
+            <p class="date"></p>`
+
+            notes_container.appendChild(note) 
+
+            //delete option
+            note.querySelector(".delete").addEventListener("click",(e)=>{
+                    note.remove()
+            })
+
+            
+           const textArea =note.querySelector("textarea")
+           textArea.setAttribute("spellcheck","false")
+           
+           document.addEventListener("DOMContentLoaded",()=>{
+            const savedNote = localStorage.getItem("userNote") 
+            if(savedNote){
+                textArea.value = savedNote
+                textArea.setAttribute("readonly",true) 
+                textArea.textDecoration="none"
+               
+            }
+           })
+            // save note
+              note.querySelector(".save").addEventListener("click",(e)=>{
+               const noteContent =textArea.value
+               textArea.style.textDecoration="none"
+                
+              localStorage.setItem("userNote",noteContent)
+              alert("Notes saved Successfull!")
+              })
+            
+         const date12=note.querySelector(".date")
+        const months=["January","February","March",,"April","May","June","July","Auguest","September","October","November","December"]
+        const dateObj=new Date()
+        const day=dateObj.getDay()
+        const month=months[dateObj.getMonth()]
+        const years=dateObj.getFullYear()
+        date12.innerHTML=`${day} ${month}, ${years}`  
+            
+        //edit option
+    note.querySelector(".edit").addEventListener("click",()=>{
+        
+        textArea.focus
+        note.querySelector("textarea").style.textDecoration ="underline"
+        textArea.style.textDecorationColor="blue"
+        textArea.setAttribute("spellcheck","false")
+        textArea.removeAttribute("readonly")
+    })
+})
+    </script>
+</body>
+</html>

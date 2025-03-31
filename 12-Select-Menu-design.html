@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-How to Make a select Menu Design</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            background:linear-gradient(to bottom,yellow,orangered);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .selector{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .selector .selector-field{
+            display: flex;
+            background-color:lightpink;
+            margin: 20px 30px;
+            height: 40px;
+            width: 300px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .selector .selector-field p{
+            font-size: 17px;
+        }
+        .selector-field img{
+                width: 9%;
+        }
+        #list{
+            list-style: none;
+            background-color: lightpink;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .option{
+           padding:6px 20px;
+           width: 100%;
+           box-sizing: border-box;
+           cursor: pointer;
+        }
+        .option img{
+            vertical-align:sub;
+        }
+        .option span{
+            font-size: 17px;
+            padding-left: 10px;
+        }
+        .option:hover{
+            background-color: white;
+           
+        }
+        .hide{
+            visibility: hidden;
+        }
+        #arrow{
+            transform: rotate(-180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="selector">
+        <div class="selector-field">
+            <p class="text">Select Social Media</p>
+            <img src="Images/arrow-down-32.png" alt="" id="arrow">
+        </div>
+        <ul class="hide" id="list">
+            <li class="option">
+                <img src="Images/bxl-facebook.svg" alt="">
+               <span>Facebook</span> 
+            </li>
+            <li class="option">
+                <img src="Images/bxl-instagram.svg" alt="">
+                <span>Instagram</span>
+            </li>
+            <li class="option">
+                <img src="Images/bxl-google.svg" alt="">
+               <span> Google</span>
+            </li>
+            <li class="option">
+                <img src="Images/bxl-linkedin.svg" alt="">
+               <span> Linkdin</span>
+            </li>
+            <li class="option">
+                <img src="Images/bxl-skype.svg" alt="">
+                <span>Skype</span>
+            </li>
+            <li class="option">
+                <img src="Images/bxl-telegram.svg" alt="">
+                <span>Telegram</span>
+            </li>
+            <li class="option">
+                <img src="Images/bxl-twitter.svg" alt="">
+                <span>Twitter</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const selectorField = document.querySelector(".selector-field")
+        const text = document.querySelector(".text")
+        const option=document.getElementsByClassName("option")
+        const list = document.getElementById("list")
+        const arrow= document.getElementById("arrow")
+
+        selectorField.onclick= function() {
+            list.classList.toggle("hide")
+            arrow.style.transform="rotate(0deg)"
+        }
+        for(options of option){
+            options.onclick=function(){
+                text.innerHTML = this.textContent
+               list.classList.toggle("hide")
+                arrow.style.transform="rotate(180deg)"
+            }
+        }
+
+        
+
+
+
+
+
+    </script>
+</body>
+</html>
