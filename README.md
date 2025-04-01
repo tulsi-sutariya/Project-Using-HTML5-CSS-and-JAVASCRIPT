@@ -74,7 +74,7 @@ Each project covers a unique frontend feature and functionality.
 ![Image](https://github.com/user-attachments/assets/187b0aec-9056-4bd7-bb44-8d3066ea4670)
 # 16-Password Generator
 ![Image](https://github.com/user-attachments/assets/f100da71-849e-484e-839e-46b4f01c5f7b)
-# 17-RippleEffe Button
+# 17-RippleEffect Button
 ![Image](https://github.com/user-attachments/assets/81e97086-9234-4c83-8441-29078da2e1e5)
 # 18-OTP Code Verification
 ![Image](https://github.com/user-attachments/assets/8ff6d296-68b5-4b2c-bf73-142e1b47e797)
