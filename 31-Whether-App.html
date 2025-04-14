@@ -91,7 +91,7 @@
 
         form.addEventListener("submit",async(e)=>{
            e.preventDefault()
-           const url = `http://api.weatherapi.com/v1/current.json?key=c8895d2d8e0d4e6b9e1145718242408&q=gujrat`
+           const url = `http://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY=gujrat`
            
             let getData = await fetch(url)
             getData = await getData.json()
